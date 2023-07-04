@@ -1,7 +1,5 @@
 package in.kishoresugumar.vanha.model;
 
-import java.time.LocalDate;
-
 public class Task {
 	 public int getId() {
 		return id;
@@ -15,11 +13,11 @@ public class Task {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDate getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
-	public void setDueDate(LocalDate dueDate) {
-		this.dueDate = dueDate;
+	public void setDueDate(String string) {
+		this.dueDate = string;
 	}
 	public boolean isActive() {
 		return isActive;
@@ -35,7 +33,7 @@ public class Task {
 	
 	int id;
 	String name;
-	LocalDate dueDate;
+	String dueDate;
 	boolean isActive = true;
 
 }

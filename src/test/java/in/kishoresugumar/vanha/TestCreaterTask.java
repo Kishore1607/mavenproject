@@ -3,7 +3,6 @@ package in.kishoresugumar.vanha;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import in.kishoresugumar.vanha.exception.ValidationException;
@@ -20,7 +19,7 @@ public class TestCreaterTask {
 		
 		newTask.setId(5555);
 		newTask.setName("Kishore");
-		newTask.setDueDate(LocalDate.of(2023, 7, 4));
+		newTask.setDueDate("16/07/2023");
 		newTask.setActive(true);
 		
 		assertDoesNotThrow(() -> {
@@ -50,7 +49,7 @@ public class TestCreaterTask {
 		
 		newTask.setId(5555);
 		newTask.setName(null);
-		newTask.setDueDate(LocalDate.of(2023, 7, 4));
+		newTask.setDueDate("2023/07/16");
 		newTask.setActive(true);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
@@ -72,7 +71,7 @@ public class TestCreaterTask {
 		
 	    newTask.setId(5555);
 	    newTask.setName(" ");
-		newTask.setDueDate(LocalDate.of(2023, 7, 4));
+		newTask.setDueDate("16/07/2023");
 	    newTask.setActive(true);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
@@ -80,27 +79,6 @@ public class TestCreaterTask {
 		});
 
 		String exceptedMessage = "Name cannot be null or empty";
-		String actualMessage = exception.getMessage();
-
-		assertTrue(exceptedMessage.equals(actualMessage));
-	}
-	@Test
-	public void testTaskDueDateBefore() {
-
-		TaskService taskService = new TaskService();
-		
-		Task newTask = new Task();
-		
-		newTask.setId(5555);
-		newTask.setName("Kishore");
-		newTask.setDueDate(LocalDate.of(2002, 7, 16));
-		newTask.setActive(true);
-
-		Exception exception = assertThrows(ValidationException.class, () -> {
-			taskService.create(newTask);
-		});
-
-		String exceptedMessage = "Input date is before the current date";
 		String actualMessage = exception.getMessage();
 
 		assertTrue(exceptedMessage.equals(actualMessage));
@@ -121,7 +99,28 @@ public class TestCreaterTask {
 			taskService.create(newTask);
 		});
 
-		String exceptedMessage = "Input date cannot be empty";
+		String exceptedMessage = "Date cannot be null or empty";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(exceptedMessage.equals(actualMessage));
+	}
+	@Test
+	public void testTaskDueDateEmpty() {
+
+		TaskService taskService = new TaskService();
+		
+	    Task newTask = new Task();
+		
+	    newTask.setId(5555);
+	    newTask.setName("Kishore");
+		newTask.setDueDate(" ");
+	    newTask.setActive(true);
+
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			taskService.create(newTask);
+		});
+
+		String exceptedMessage = "Date cannot be null or empty";
 		String actualMessage = exception.getMessage();
 
 		assertTrue(exceptedMessage.equals(actualMessage));

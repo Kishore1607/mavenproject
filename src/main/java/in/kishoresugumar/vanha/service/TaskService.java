@@ -26,7 +26,7 @@ public class TaskService {
 		
 		updatedTask.setId(5555);
 		updatedTask.setName("Kishore");
-		updatedTask.setDueDate(LocalDate.of(2023, 7, 4));
+		updatedTask.setDueDate("16/07/2023");
 		updatedTask.setActive(true);
 		
 		TaskDAO taskDao = new TaskDAO();
@@ -38,7 +38,7 @@ public class TaskService {
 		
 		deleteTask.setId(5555);
 		deleteTask.setName("Kishore");
-		deleteTask.setDueDate(LocalDate.of(2023, 7, 4));
+		deleteTask.setDueDate("16/07/2023");
 		deleteTask.setActive(true);
 		
 		TaskDAO taskDao = new TaskDAO();
@@ -50,7 +50,7 @@ public class TaskService {
 		
 		findById.setId(5555);
 		findById.setName("Kishore");
-		findById.setDueDate(LocalDate.of(2023, 7, 4));
+		findById.setDueDate("16/07/2023");
 		findById.setActive(true);
 		
 		TaskDAO taskDao = new TaskDAO();

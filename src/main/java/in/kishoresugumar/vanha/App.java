@@ -34,7 +34,7 @@ public class App {
 			Task newTask = new Task();
 			newTask.setId(5555);
 			newTask.setName("Kishore");
-			newTask.setDueDate(LocalDate.of(2023, 7, 4));
+			newTask.setDueDate("16/07/2023");
 			newTask.setActive(true);
 			taskService.create(newTask);
 			taskService.getAll();
