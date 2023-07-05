@@ -1,5 +1,6 @@
 package in.kishoresugumar.vanha;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,24 +15,24 @@ public class TestCreaterTask {
 	public void testCreateTaskWithValidData() {
 
 		TaskService taskService = new TaskService();
-		
+
 		Task newTask = new Task();
-		
+
 		newTask.setId(5555);
 		newTask.setName("Kishore");
 		newTask.setDueDate("16/07/2023");
 		newTask.setActive(true);
-		
+
 		assertDoesNotThrow(() -> {
 			taskService.create(newTask);
 		});
 	}
-	
+
 	@Test
 	public void testCreateTaskWithInvalidData() {
 
 		TaskService taskService = new TaskService();
-		
+
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			taskService.create(null);
 		});
@@ -40,13 +41,14 @@ public class TestCreaterTask {
 
 		assertTrue(exceptedMessage.equals(actualMessage));
 	}
+
 	@Test
 	public void testTaskNameNull() {
 
 		TaskService taskService = new TaskService();
-		
+
 		Task newTask = new Task();
-		
+
 		newTask.setId(5555);
 		newTask.setName(null);
 		newTask.setDueDate("2023/07/16");
@@ -66,13 +68,13 @@ public class TestCreaterTask {
 	public void testTaskNameEmpty() {
 
 		TaskService taskService = new TaskService();
-		
-	    Task newTask = new Task();
-		
-	    newTask.setId(5555);
-	    newTask.setName(" ");
+
+		Task newTask = new Task();
+
+		newTask.setId(5555);
+		newTask.setName(" ");
 		newTask.setDueDate("16/07/2023");
-	    newTask.setActive(true);
+		newTask.setActive(true);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			taskService.create(newTask);
@@ -83,13 +85,14 @@ public class TestCreaterTask {
 
 		assertTrue(exceptedMessage.equals(actualMessage));
 	}
+
 	@Test
 	public void testTaskDueDateNull() {
 
 		TaskService taskService = new TaskService();
-		
+
 		Task newTask = new Task();
-		
+
 		newTask.setId(5555);
 		newTask.setName("Kishore");
 		newTask.setDueDate(null);
@@ -104,17 +107,18 @@ public class TestCreaterTask {
 
 		assertTrue(exceptedMessage.equals(actualMessage));
 	}
+
 	@Test
 	public void testTaskDueDateEmpty() {
 
 		TaskService taskService = new TaskService();
-		
-	    Task newTask = new Task();
-		
-	    newTask.setId(5555);
-	    newTask.setName("Kishore");
+
+		Task newTask = new Task();
+
+		newTask.setId(5555);
+		newTask.setName("Kishore");
 		newTask.setDueDate(" ");
-	    newTask.setActive(true);
+		newTask.setActive(true);
 
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			taskService.create(newTask);
@@ -125,5 +129,27 @@ public class TestCreaterTask {
 
 		assertTrue(exceptedMessage.equals(actualMessage));
 	}
-	
+
+	@Test
+	public void testTaskDueDateIsBefore() {
+
+		TaskService taskService = new TaskService();
+
+		Task newTask = new Task();
+
+		newTask.setId(5555);
+		newTask.setName("Kishore");
+		newTask.setDueDate("16/12/2002");
+		newTask.setActive(true);
+
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			taskService.create(newTask);
+		});
+
+		String exceptedMessage = "Due date should be in future";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(exceptedMessage.equals(actualMessage));
+	}
+
 }
