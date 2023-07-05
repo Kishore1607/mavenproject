@@ -152,4 +152,25 @@ public class TestCreaterTask {
 		assertTrue(exceptedMessage.equals(actualMessage));
 	}
 
+	@Test
+	public void testTaskDueDateInvalid() {
+
+		TaskService taskService = new TaskService();
+
+		Task newTask = new Task();
+
+		newTask.setId(5555);
+		newTask.setName("Kishore");
+		newTask.setDueDate("16/20/2002");
+		newTask.setActive(true);
+
+		Exception exception = assertThrows(ValidationException.class, () -> {
+			taskService.create(newTask);
+		});
+
+		String exceptedMessage = "Invalid date";
+		String actualMessage = exception.getMessage();
+
+		assertTrue(exceptedMessage.equals(actualMessage));
+	}
 }

@@ -22,6 +22,12 @@ public class TaskValidator {
 
 		String date = newTask.getDueDate();
 
+		try {
+			LocalDate.parse(date, DateTimeFormatter.ofPattern("d/M/uuuu").withResolverStyle(ResolverStyle.STRICT));
+		}catch(DateTimeParseException e) {
+			throw new ValidationException("Invalid date");
+		}
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate dueDate = LocalDate.parse(date, formatter);
 		LocalDate.parse(date, DateTimeFormatter.ofPattern("d/M/uuuu").withResolverStyle(ResolverStyle.STRICT));
@@ -29,5 +35,6 @@ public class TaskValidator {
 		if (dueDate.equals(currentDate) || dueDate.isBefore(currentDate)) {
 			throw new ValidationException("Due date should be in future");
 		}
+
 	}
 }
