@@ -1,80 +1,65 @@
 package in.kishoresugumar.vanha.dao;
 
-import in.kishoresugumar.vanha.dao.TaskDAO.TaskList;
-import in.kishoresugumar.vanha.model.Task;
+import java.util.HashSet;
+import java.util.Set;
+import in.kishoresugumar.vanha.interfacePackage.TaskInterface;
+import in.kishoresugumar.vanha.model.TaskEntity;
 
-public class TaskDAO {
+public class TaskDAO implements TaskInterface{
+	
+	private Set<TaskEntity> taskSet = new HashSet<>();
 
-	public static class TaskList {
-		public static Task[] listOfTasks = new Task[10];
+	@Override
+	public Set<TaskEntity> findAll() {
+		// TODO Auto-generated method stub
+		return taskSet;
 	}
 
-	private static final String taskList = null;
-
-	public Task[] findAll() {
-		TaskList taskList = new TaskList();
-		Task[] userList = taskList.listOfTasks;
-		return userList;
-	}
-
-	/**
-	 *
-	 * @param newUser
-	 */
-	public void create(Task newTask) {
-		Task[] arr = TaskList.listOfTasks;
-		for (int i = 0; i < arr.length; i++) {
-			Task task = arr[i];
-			if (task == null) {
-				arr[i] = newTask;
-				break;
-			}
-		}
-	}
-
-	public void update(Task updatedTask) {
-		Task[] array = TaskList.listOfTasks;
-		for (int i = 0; i < array.length; i++) {
-			Task task = array[i];
-			if (task == null) {
-				continue;
-			}
-			if (task.getId() == updatedTask.getId()) {
-				task.setName(updatedTask.getName());
-				task.setDueDate(updatedTask.getDueDate());
-				break;
-			}
-		}
-	}
-
-	public void delete(int id) {
-		Task[] arr = TaskList.listOfTasks;
-		for (int i = 0; i < arr.length; i++) {
-			Task task = arr[i];
-			if (task == null) {
-				continue;
-			}
+	@Override
+	public TaskEntity findById(int id) {
+		// TODO Auto-generated method stub
+		for (TaskEntity task : taskSet) {
 			if (task.getId() == id) {
-				arr[i].setActive(false);
+				return task;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void create(TaskEntity newTask) {
+		// TODO Auto-generated method stub
+		if (!taskSet.contains(newTask)) {
+			taskSet.add(newTask);
+		}
+	}
+
+	@Override
+	public void update(TaskEntity updateTask) {
+		// TODO Auto-generated method stub
+		for (TaskEntity task : taskSet) {
+			if (task.getId() == updateTask.getId()) {
+				task.setName(updateTask.getName());
+				task.setDueDate(updateTask.getDueDate());
+				task.setActive(updateTask.isActive());
 				break;
 			}
 		}
 	}
 
-	// Find by id
-	public Task findById(int taskId) {
-		Task[] arr = TaskDAO.TaskList.listOfTasks;
-		Task taskMatch = null;
-		for (int i = 0; i < arr.length; i++) {
-			Task task = arr[i];
-			if (task == null) {
-				continue;
-			}
-			if (task.getId() == taskId) {
-				taskMatch = task;
+	@Override
+	public void delete(TaskEntity deleteTask) {
+		// TODO Auto-generated method stub
+		TaskEntity taskToRemove = null;
+		for (TaskEntity task : taskSet) {
+			if (task.getId() == deleteTask.getId()) {
+				taskToRemove = task;
 				break;
 			}
 		}
-		return taskMatch;
+
+		if (taskToRemove != null) {
+			taskSet.remove(taskToRemove);
+		}
 	}
 }

@@ -1,7 +1,9 @@
 package in.kishoresugumar.vanha.dao;
 
-import in.kishoresugumar.vanha.model.User;
+import java.util.HashSet;
+import java.util.Set;
+import in.kishoresugumar.vanha.model.UserEntity;
 
 public class UserList {
-	public static User[] listOfUsers = new User[10];
+    public static Set<UserEntity> listOfUsers = new HashSet<>();
 }

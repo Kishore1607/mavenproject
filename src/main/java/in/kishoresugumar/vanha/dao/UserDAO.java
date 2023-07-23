@@ -1,69 +1,74 @@
 package in.kishoresugumar.vanha.dao;
 
-import in.kishoresugumar.vanha.model.User;
+import java.util.Set;
+import java.util.HashSet;
+import in.kishoresugumar.vanha.interfacePackage.UserInterface;
+import in.kishoresugumar.vanha.model.UserEntity;
 
-public class UserDAO {
-	// TODO Auto-generated method stub
-	public User[] findAll() {
-		User[] userList = UserList.listOfUsers;
-		return userList;
+public class UserDAO implements UserInterface {
+
+	private Set<UserEntity> userSet = new HashSet<>();
+
+	@Override
+	public Set<UserEntity> findAll() {
+		// TODO Auto-generated method stub
+		return userSet;
 	}
 
-	/**
-	 *
-	 * @param newUser
-	 */
-	public void create(User newUser) {
-		User[] arr = UserList.listOfUsers;
-		for (int i = 0; i < arr.length; i++) {
-			User user = arr[i];
-			if (user == null) {
-				arr[i] = newUser;
-				break;
-			}
-		}
-	}
-
-	public void update(User updatedUser) {
-		User[] array = UserList.listOfUsers;
-		for (int i = 0; i < array.length; i++) {
-			User user = array[i];
-			if (user == null) {
-				continue;
-			}
-			if (user.getId() == updatedUser.getId()) {
-				user.setFirstName(updatedUser.getFirstName());
-				user.setLastName(updatedUser.getLastName());
-				user.setPassword(updatedUser.getPassword());
-				break;
-			}
-		}
-	}
-
-	public void delete(int id) {
-		User[] arr = UserList.listOfUsers;
-		for (int i = 0; i < arr.length; i++) {
-			User user = arr[i];
-			if (user == null) {
-				continue;
-			}
+	@Override
+	public UserEntity findById(int id) {
+		for (UserEntity user : userSet) {
 			if (user.getId() == id) {
-				arr[i].setActive(false);
+				return user;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void create(UserEntity newUser) {
+		if (!userSet.contains(newUser)) {
+			userSet.add(newUser);
+		}
+	}
+
+	@Override
+	public void update(UserEntity updateUser) {
+		// TODO Auto-generated method stub
+		for (UserEntity user : userSet) {
+			if (user.getId() == updateUser.getId()) {
+				user.setFirstName(updateUser.getFirstName());
+				user.setLastName(updateUser.getLastName());
+				user.setEmail(updateUser.getEmail());
+				user.setPassword(updateUser.getPassword());
+				user.setActive(updateUser.isActive());
 				break;
 			}
 		}
 	}
 
-	// Find by id
-	public User findById(int userId) {
-		User[] arr = UserList.listOfUsers;
-		User userMatch = null;
-		for (int i = 0; i < arr.length; i++) {
-			User user = arr[i];
-			if (user == null) {
-				continue;
+	@Override
+	public void delete(UserEntity deleteUser) {
+		// TODO Auto-generated method stub
+		UserEntity userToRemove = null;
+		for (UserEntity user : userSet) {
+			if (user.getId() == deleteUser.getId()) {
+				userToRemove = user;
+				break;
 			}
-			if (user.getId() == userId) {
+		}
+
+		if (userToRemove != null) {
+			userSet.remove(userToRemove);
+		}
+	}
+
+	@Override
+	public UserEntity findByEmail(String email) {
+		// TODO Auto-generated method stub
+		UserEntity userMatch = null;
+		for (UserEntity user : userSet) {
+			if (email.equals(user.getEmail())) {
 				userMatch = user;
 				break;
 			}
