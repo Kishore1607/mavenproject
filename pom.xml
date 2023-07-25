@@ -5,12 +5,12 @@
 	<groupId>in.kishoresugumar</groupId>
 	<artifactId>vanha</artifactId>
 	<version>1.0.0</version>
-	
+
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
-	
+
 	<dependencies><!--
 		https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
 		<dependency>
@@ -25,10 +25,17 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.28</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.cdimascio/java-dotenv -->
+		<dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>java-dotenv</artifactId>
+			<version>5.2.2</version>
+		</dependency>
+
 
 	</dependencies>
-	
-	
+
+
 	<build>
 
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven

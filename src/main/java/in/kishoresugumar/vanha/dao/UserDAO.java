@@ -105,18 +105,26 @@ public class UserDAO implements UserInterface {
 
 	@Override
 	public void update(UserEntity updateUser) {
-		// TODO Auto-generated method stub
-		for (UserEntity user : userSet) {
-			if (user.getId() == updateUser.getId()) {
-				user.setFirstName(updateUser.getFirstName());
-				user.setLastName(updateUser.getLastName());
-				user.setEmail(updateUser.getEmail());
-				user.setPassword(updateUser.getPassword());
-				user.setActive(updateUser.isActive());
-				break;
-			}
-		}
+	    Connection conn = null;
+	    PreparedStatement pre = null;
+
+	    try {
+	        String query = "UPDATE users SET firstname=?, lastname=? WHERE id=?";
+	        conn = ConnectionUtil.getConnection();
+	        pre = conn.prepareStatement(query);
+	        pre.setString(1, updateUser.getFirstName());
+	        pre.setString(2, updateUser.getLastName());
+	        pre.setInt(3, updateUser.getId());
+	        pre.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new RuntimeException(e);
+	    } finally {
+	        ConnectionUtil.close(conn, pre);
+	    }
 	}
+
 
 	@Override
 	public void delete(UserEntity deleteUser) {

@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: in.kishoresugumar.vanha.TestCreaterTask
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.089 s <<< FAILURE! - in in.kishoresugumar.vanha.TestCreaterTask
-in.kishoresugumar.vanha.TestCreaterTask.testCreateTaskWithValidData()  Time elapsed: 0.071 s  <<< FAILURE!
+Tests run: 8, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.062 s <<< FAILURE! - in in.kishoresugumar.vanha.TestCreaterTask
+in.kishoresugumar.vanha.TestCreaterTask.testCreateTaskWithValidData()  Time elapsed: 0.014 s  <<< FAILURE!
 org.opentest4j.AssertionFailedError: Unexpected exception thrown: in.kishoresugumar.vanha.exception.ValidationException: Due date should be in future
 	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:83)
 	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:54)

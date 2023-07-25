@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.sql.SQLException;
-
 import org.junit.jupiter.api.Test;
 import in.kishoresugumar.vanha.exception.ValidationException;
 import in.kishoresugumar.vanha.model.User;
@@ -46,6 +44,23 @@ public class TestCreateUser {
 		String actualMessage = exception.getMessage();
 
 		assertTrue(exceptedMessage.equals(actualMessage));
+	}
+	
+	
+	@Test
+	public void testUpdateUserWithvalidData() throws Exception {
+
+		UserService userService = new UserService();
+		User userUpdate = new User();
+		
+		userUpdate.setFirstName("Formido");
+		userUpdate.setLastName("Praveen");
+		userUpdate.setId(1);
+		
+		assertDoesNotThrow(()-> {
+			userService.update(userUpdate);
+			});
+		
 	}
 
 	@Test
