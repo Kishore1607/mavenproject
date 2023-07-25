@@ -7,20 +7,19 @@ import org.junit.jupiter.api.Test;
 
 import in.kishoresugumar.vanha.exception.ValidationException;
 import in.kishoresugumar.vanha.model.Task;
+import in.kishoresugumar.vanha.model.User;
 import in.kishoresugumar.vanha.service.TaskService;
+import in.kishoresugumar.vanha.service.UserService;
 
 public class TestCreaterTask {
 	@Test
 	public void testCreateTaskWithValidData() {
 
 		TaskService taskService = new TaskService();
-
 		Task newTask = new Task();
 
-		newTask.setId(5555);
-		newTask.setName("Kishore");
-		newTask.setDueDate("16/07/2023");
-		newTask.setActive(true);
+		newTask.setName("Saraku adikanum");
+		newTask.setDueDate("26/07/2023");
 
 		assertDoesNotThrow(() -> {
 			taskService.create(newTask);
@@ -40,7 +39,38 @@ public class TestCreaterTask {
 
 		assertTrue(exceptedMessage.equals(actualMessage));
 	}
+	
+	
+	@Test
+	public void testUpdateTaskWithvalidData() throws Exception {
 
+		TaskService taskService = new TaskService();
+		Task newTask = new Task();
+		
+		newTask.setName("Formido Bday");
+		newTask.setDueDate("06/09/2023");
+		newTask.setId(1);
+		
+		assertDoesNotThrow(()-> {
+			taskService.update(newTask);
+			});
+		
+	}
+
+	
+	@Test
+	public void testDeleteTask() throws Exception {
+
+		TaskService taskService = new TaskService();
+		Task deleteTask = new Task();
+		deleteTask.setId(1);
+		
+		assertDoesNotThrow(()-> {
+			taskService.delete(deleteTask);
+			});
+		
+	}
+	
 	@Test
 	public void testTaskNameNull() {
 

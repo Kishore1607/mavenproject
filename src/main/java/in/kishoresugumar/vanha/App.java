@@ -1,7 +1,6 @@
 package in.kishoresugumar.vanha;
 
 import in.kishoresugumar.vanha.model.User;
-import in.kishoresugumar.vanha.model.UserEntity;
 import in.kishoresugumar.vanha.service.UserService;
 import in.kishoresugumar.vanha.model.Task;
 import in.kishoresugumar.vanha.service.TaskService;
@@ -26,8 +25,8 @@ public class App {
 	        TaskService taskService = new TaskService();
 	        Task newTask = new Task();
 	        newTask.setId(01);
-	        newTask.setName("Task 1");
-	        newTask.setDueDate("01/01/2025");
+	        newTask.setName("Task 5");
+	        newTask.setDueDate("01/12/2025");
 	        newTask.setActive(true);
 	        taskService.create(newTask);
 	        taskService.printAllTasks();

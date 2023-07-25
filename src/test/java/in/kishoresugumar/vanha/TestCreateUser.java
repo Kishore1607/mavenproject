@@ -62,6 +62,19 @@ public class TestCreateUser {
 			});
 		
 	}
+	
+	@Test
+	public void testDeleteUser() throws Exception {
+
+		UserService userService = new UserService();
+		User userDelete = new User();
+		userDelete.setId(1);
+		
+		assertDoesNotThrow(()-> {
+			userService.delete(userDelete);
+			});
+		
+	}
 
 	@Test
 	public void testUserEmailNull() {

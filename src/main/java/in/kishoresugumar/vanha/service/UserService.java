@@ -17,7 +17,7 @@ public class UserService {
 	public void update(UserEntity updatedUser) {
 	    userDao.update(updatedUser);
 	}
-
+	
 	public void delete(UserEntity deleteUser) {
 	    userDao.delete(deleteUser);
 	}

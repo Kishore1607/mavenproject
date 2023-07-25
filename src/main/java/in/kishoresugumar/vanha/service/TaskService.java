@@ -27,13 +27,13 @@ public class TaskService {
 		return taskDao.findById(id);
 
 	}
-    public TaskEntity[] getAllTasksAsArray() {
+    public Set<TaskEntity> getAllTasksAsArray() {
         Set<TaskEntity> taskSet = taskDao.findAll();
-        return taskSet.toArray(new TaskEntity[0]);
+        return taskSet;
     }
     
     public void printAllTasks() {
-        TaskEntity[] allTasksArray = getAllTasksAsArray();
+        Set<TaskEntity> allTasksArray = getAllTasksAsArray();
         for (TaskEntity task : allTasksArray) {
             System.out.println(task);
         }
