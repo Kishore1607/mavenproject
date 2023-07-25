@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: in.kishoresugumar.vanha.TestCreaterTask
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.089 s <<< FAILURE! - in in.kishoresugumar.vanha.TestCreaterTask
+in.kishoresugumar.vanha.TestCreaterTask.testCreateTaskWithValidData()  Time elapsed: 0.071 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: in.kishoresugumar.vanha.exception.ValidationException: Due date should be in future
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:83)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:54)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:37)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3135)
+	at in.kishoresugumar.vanha.TestCreaterTask.testCreateTaskWithValidData(TestCreaterTask.java:25)
+Caused by: in.kishoresugumar.vanha.exception.ValidationException: Due date should be in future
+	at in.kishoresugumar.vanha.validation.TaskValidator.validate(TaskValidator.java:36)
+	at in.kishoresugumar.vanha.service.TaskService.create(TaskService.java:14)
+	at in.kishoresugumar.vanha.TestCreaterTask.lambda$testCreateTaskWithValidData$0(TestCreaterTask.java:26)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:50)
+	... 16 more
+

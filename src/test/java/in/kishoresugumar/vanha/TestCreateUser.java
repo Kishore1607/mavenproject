@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import java.sql.SQLException;
 
+import org.junit.jupiter.api.Test;
 import in.kishoresugumar.vanha.exception.ValidationException;
 import in.kishoresugumar.vanha.model.User;
 import in.kishoresugumar.vanha.service.UserService;
@@ -14,26 +15,29 @@ public class TestCreateUser {
 	@Test
 	public void testCreateUserWithValidData() {
 
-		UserService userService = new UserService();
-		
+		UserService us = new UserService();
 		User newUser = new User();
 		
-		newUser.setId(5555);
-		newUser.setFirstName("Kishore");
-		newUser.setLastName("Sugumar");
-		newUser.setEmail("kishore@gmail.com");
-		newUser.setPassword("K1i6s0h7");
-		newUser.setActive(true);
+		newUser.setFirstName("Eren");
+		newUser.setLastName("Micky");
+		newUser.setEmail("ErenMicky@gmail.com");
+		newUser.setPassword("EM#123");
 		
-		assertDoesNotThrow(() -> {
-			userService.create(newUser);
+		assertDoesNotThrow(()-> {
+			us.create(newUser);
 		});
 	}
 	
 	@Test
-	public void testCreateUserWithInvalidData() {
+	public void testCreateUserWithInvalidData() throws Exception {
 
 		UserService userService = new UserService();
+		User invalidNewUser = new User();
+		
+		invalidNewUser.setFirstName("Eren");
+		invalidNewUser.setLastName("Micky");
+		invalidNewUser.setEmail("ErenMicky@gmail.com");
+		invalidNewUser.setPassword("EM#123");
 		
 		Exception exception = assertThrows(ValidationException.class, () -> {
 			userService.create(null);

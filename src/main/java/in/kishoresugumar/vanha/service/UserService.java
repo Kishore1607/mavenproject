@@ -1,7 +1,6 @@
 package in.kishoresugumar.vanha.service;
 
 import java.util.Set;
-
 import in.kishoresugumar.vanha.dao.UserDAO;
 import in.kishoresugumar.vanha.model.User;
 import in.kishoresugumar.vanha.model.UserEntity;
@@ -27,13 +26,13 @@ public class UserService {
         return userDao.findById(id);
     }
 	
-    public UserEntity[] getAllUsersAsArray() {
+    public Set<UserEntity> getAllUsersAsArray() {
         Set<UserEntity> userSet = userDao.findAll();
-        return userSet.toArray(new UserEntity[0]);
+        return userSet;
     }
     
     public void printAllUsers() {
-        UserEntity[] allUsersArray = getAllUsersAsArray();
+        Set<UserEntity> allUsersArray = getAllUsersAsArray();
         for (UserEntity user : allUsersArray) {
             System.out.println(user);
         }

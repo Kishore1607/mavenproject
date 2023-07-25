@@ -5,10 +5,12 @@
 	<groupId>in.kishoresugumar</groupId>
 	<artifactId>vanha</artifactId>
 	<version>1.0.0</version>
+	
 	<properties>
-		<maven.compile.source>17</maven.compile.source>
-		<maven.compile.target>17</maven.compile.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
+	
 	<dependencies><!--
 		https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
 		<dependency>
@@ -17,7 +19,16 @@
 			<version>5.8.2</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.28</version>
+		</dependency>
+
 	</dependencies>
+	
+	
 	<build>
 
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven

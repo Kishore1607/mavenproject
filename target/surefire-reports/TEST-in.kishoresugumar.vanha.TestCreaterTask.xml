@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="in.kishoresugumar.vanha.TestCreateUser" time="0.001" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="in.kishoresugumar.vanha.TestCreaterTask" time="0.089" tests="8" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,12 +58,26 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testCreateUserWithValidData" classname="in.kishoresugumar.vanha.TestCreateUser" time="0"/>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testCreateUserWithInvalidData" classname="in.kishoresugumar.vanha.TestCreateUser" time="0"/>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testUserFirstNameNull" classname="in.kishoresugumar.vanha.TestCreateUser" time="0"/>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testUserPasswordEmpty" classname="in.kishoresugumar.vanha.TestCreateUser" time="0"/>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testUserPasswordNull" classname="in.kishoresugumar.vanha.TestCreateUser" time="0"/>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testUserFirstNameEmpty" classname="in.kishoresugumar.vanha.TestCreateUser" time="0"/>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testUserEmailNull" classname="in.kishoresugumar.vanha.TestCreateUser" time="0.001"/>
-  <testcase name="in.kishoresugumar.vanha.TestCreateUser.testUserEmailEmpty" classname="in.kishoresugumar.vanha.TestCreateUser" time="0"/>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testCreateTaskWithValidData" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0.071">
+    <failure message="Unexpected exception thrown: in.kishoresugumar.vanha.exception.ValidationException: Due date should be in future" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Unexpected exception thrown: in.kishoresugumar.vanha.exception.ValidationException: Due date should be in future
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:83)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:54)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:37)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3135)
+	at in.kishoresugumar.vanha.TestCreaterTask.testCreateTaskWithValidData(TestCreaterTask.java:25)
+Caused by: in.kishoresugumar.vanha.exception.ValidationException: Due date should be in future
+	at in.kishoresugumar.vanha.validation.TaskValidator.validate(TaskValidator.java:36)
+	at in.kishoresugumar.vanha.service.TaskService.create(TaskService.java:14)
+	at in.kishoresugumar.vanha.TestCreaterTask.lambda$testCreateTaskWithValidData$0(TestCreaterTask.java:26)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:50)
+	... 16 more
+</failure>
+  </testcase>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testTaskDueDateInvalid" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0"/>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testTaskDueDateEmpty" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0.001"/>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testTaskDueDateNull" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0.002"/>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testCreateTaskWithInvalidData" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0.002"/>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testTaskDueDateIsBefore" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0.001"/>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testTaskNameNull" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0.001"/>
+  <testcase name="in.kishoresugumar.vanha.TestCreaterTask.testTaskNameEmpty" classname="in.kishoresugumar.vanha.TestCreaterTask" time="0.001"/>
 </testsuite>
